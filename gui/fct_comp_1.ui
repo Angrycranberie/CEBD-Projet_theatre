@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
+    <width>722</width>
     <height>318</height>
    </rect>
   </property>
@@ -14,19 +14,6 @@
    <string>Afficher les détails des tickets</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Travail à réaliser : ajouter la date d'émission des tickets ainsi que leur numéro de dossier.</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QTableWidget" name="table_fct_comp_1">
      <attribute name="horizontalHeaderDefaultSectionSize">
@@ -59,6 +46,16 @@
      <column>
       <property name="text">
        <string>noRang</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>dateEmTick</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>noDos</string>
       </property>
      </column>
     </widget>
