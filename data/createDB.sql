@@ -74,10 +74,11 @@ create view LesRepresentations as
 
 create view LesDossiers as
     select noDos, sum(((prixBaseSpec * promoRep)*tauxZone)*tauxReductionCat) as montant
-    from LesDossiers_base natural join LesTickets
+    from LesDossiers_base  natural join LesTickets
         join LesCategoriesTickets CT on LesTickets.libelleCat = CT.libelleCat
         natural join LesRepresentations
         natural join LesSpectacles
         natural join LesPlaces
         join LesZones on LesPlaces.noZone = LesZones.noZone
     group by noDos
+;
