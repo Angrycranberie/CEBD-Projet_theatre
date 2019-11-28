@@ -61,7 +61,7 @@ create table LesCategoriesTickets (
     libelleCat varchar ,
     tauxReductionCat decimal (4,2),
     constraint pk_cat primary key (libelleCat),
-    constraint ck1_cat check(libelleCat in ('normal', 'adhérent', 'senior', 'étudiant', 'militaire')),
+    constraint ck1_cat check(libelleCat in ('normal', 'adherent', 'senior', 'etudiant', 'militaire')),
     constraint ck2_cat check(tauxReductionCat <=1),
     constraint ck3_cat check(tauxReductionCat > 0)
 );
@@ -73,12 +73,12 @@ create view LesRepresentations as
 ;
 
 create view LesDossiers as
-    select noDos, sum(((prixBaseSpec * promoRep)*tauxZone)*tauxReductionCat) as montant
+    select noDos, sum(((Spec.prixBaseSpec)*LesZones.tauxZone)*CT.tauxReductionCat) as montant
     from LesDossiers_base  natural join LesTickets
         join LesCategoriesTickets CT on LesTickets.libelleCat = CT.libelleCat
-        natural join LesRepresentations
-        natural join LesSpectacles
-        natural join LesPlaces
+        join LesRepresentations Repr on LesTickets.dateRep = Repr.dateRep
+        join LesSpectacles Spec on LesTickets.noSpec = Spec.noSpec
+        join LesPlaces on LesTickets.noPlace = LesPlaces.noPlace and LesTickets.noRang = LesPlaces.noRang
         join LesZones on LesPlaces.noZone = LesZones.noZone
     group by noDos
 ;
