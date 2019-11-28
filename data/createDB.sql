@@ -67,7 +67,7 @@ create table LesCategoriesTickets (
 );
 
 create view LesRepresentations as
-    select rb.noSpec, rb.dateRep, rb.promoRep, count(p.noPlace) - count*(LesTickets.noPlace) as nbPlacesDispoRep
+    select rb.noSpec, rb.dateRep, rb.promoRep, count(p.noPlace) - count(LesTickets.noPlace) as nbPlacesDispoRep
     from LesPlaces p left join LesTickets on p.noPlace = LesTickets.noPlace and p.noRang = LesTickets.noRang join LesRepresentations_base rb
     on rb.noSpec = LesTickets.noSpec and rb.dateRep = LesTickets.dateRep
 ;
