@@ -57,10 +57,6 @@ create table LesDossiers_base (
     constraint pk_dos_noD primary key (noDos)
 );
 
--- TODO 1.2 : ajouter la définition de la vue LesRepresentations
--- TODO 1.3 : ajouter la table LesCategoriesTickets
--- TODO 1.4 : ajouter la définition de la vue LesDossiers
-
 create table LesCategoriesTickets (
     libelleCat varchar ,
     tauxReductionCat decimal (4,2),
