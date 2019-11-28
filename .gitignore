@@ -1,2 +1,6 @@
 
 data/theatre.db
+
+*.pyc
+
+.idea
