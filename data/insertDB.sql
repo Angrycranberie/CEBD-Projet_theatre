@@ -32,6 +32,7 @@ insert into LesPlaces(noPlace, noRang, noZone) values (5, 4, 3);
 insert into LesDossiers_base(noDos) values (1);
 insert into LesDossiers_base(noDos) values (2);
 insert into LesDossiers_base(noDos) values (3);
+insert into LesDossiers_base(noDos) values (4);
 
 insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (1, '24/12/2019 17:00', 1);
 insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (1, '25/12/2019 20:00', 0.75);
@@ -52,6 +53,12 @@ insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libe
 insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 1, 3, '20/12/2019 14:22:00',3, 'etudiant');
 insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 2, 3, '20/12/2019 14:22:00',3, 'normal');
 
-insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('etudiant', 0.8);
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 3, '20/12/2019 14:22:35',4, 'adherent');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 4, '20/12/2019 14:22:48',4, 'militaire');
+
+
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('etudiant', 0.66);
 insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('normal', 1);
-insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('senior', 0.8);
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('senior', 0.75);
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('militaire', 0.4);
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('adherent', 0.5);
