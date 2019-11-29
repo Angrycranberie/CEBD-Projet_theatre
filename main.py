@@ -9,6 +9,8 @@ from actions.action_fct_comp_1 import AppFctComp1
 from actions.action_fct_comp_2 import AppFctComp2
 from actions.action_fct_comp_3 import AppFctComp3
 from actions.action_fct_comp_4 import AppFctComp4
+from actions.action_fct_comp_5 import AppFctComp5
+from actions.action_fct_comp_6 import AppFctComp6
 from actions.action_fct_fournie_1 import AppFctFournie1
 from actions.action_fct_fournie_2 import AppFctFournie2
 from actions.action_tablesData import AppTablesData
@@ -22,7 +24,6 @@ class AppWindow(QMainWindow):
     # Création d'un signal destiné à être émis lorsque la table est modifiée
     changedValue = pyqtSignal()
 
-    # TODO 2 : ajouter les fenetres (répertoire gui) et les actions (répertoire actions) correspondant aux 2 items de la partie 2.
     # TODO 3 : ajouter les fenetres (rep. gui) et les actions (rep. actions) correspondant aux 2 items de la partie 3.
 
     # On prévoit des variables pour accueillir les fenêtres supplémentaires
@@ -33,6 +34,8 @@ class AppWindow(QMainWindow):
     fct_comp_2_dialog = None
     fct_comp_3_dialog = None
     fct_comp_4_dialog = None
+    fct_comp_5_dialog = None
+    fct_comp_6_dialog = None
 
     # Constructeur
     def __init__(self):
@@ -106,8 +109,6 @@ class AppWindow(QMainWindow):
     ####################################################################################################################
     # Ouverture des autres fenêtres de l'application
     ####################################################################################################################
-
-    # TODO 2 : ajouter la définition des méthodes déclenchées lors des clicks sur les boutons de la partie 2
     # TODO 3 : ajouter la définition des méthodes déclenchées lors des clicks sur les boutons de la partie 3
 
     # En cas de clic sur le bouton de visualisation des données
@@ -163,11 +164,23 @@ class AppWindow(QMainWindow):
         self.fct_comp_4_dialog.show()
         self.changedValue.connect(self.fct_comp_4_dialog.refreshCatList)
 
+    # En cas de clic sur la fonction à compléter 5
+    def open_fct_comp_5(self):
+        if self.fct_comp_5_dialog is not None:
+            self.fct_comp_5_dialog.close()
+        self.fct_comp_5_dialog = AppFctComp5(self.data)
+        self.fct_comp_5_dialog.show()
+
+    def open_fct_comp_6(self):
+        if self.fct_comp_6_dialog is not None:
+            self.fct_comp_6_dialog.close()
+        self.fct_comp_6_dialog = AppFctComp6(self.data)
+        self.fct_comp_6_dialog.show()
+
+
     ####################################################################################################################
     # Fonctions liées aux évènements (signal/slot/event)
     ####################################################################################################################
-
-    # TODO 2 : penser à fermer comme il faut les fenêtres de la partie 2
     # TODO 3 : penser à fermer comme il faut les fenêtres de la partie 3
 
     # On intercepte l'évènement de cloture de la fenêtre principale pour intercaler quelques actions avant sa fermeture
@@ -188,6 +201,13 @@ class AppWindow(QMainWindow):
             self.fct_comp_3_dialog.close()
         if (self.fct_comp_4_dialog is not None):
             self.fct_comp_4_dialog.close()
+
+        if (self.fct_comp_5_dialog is not None):
+            self.fct_comp_5_dialog.close()
+
+        if (self.fct_comp_6_dialog is not None):
+            self.fct_comp_6_dialog.close()
+
 
         # On ferme proprement la base de données
         self.data.close()
