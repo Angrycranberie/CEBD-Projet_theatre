@@ -68,12 +68,12 @@ create table LesCategoriesTickets (
 
 create view LesRepresentations as
     with placesMax as (
-        select count(noPlace || '_' || noRang) as nbPlacesMax
+        select count(noPlace) as nbPlacesMax
         from LesPlaces
     )
-    select noSpec, dateRep, promoRep, nbPlacesMax - case noPlace when null then 0 else count(noPlace || '_' || noRang) end as nbPlacesDispoRep
+    select noSpec, dateRep, promoRep, nbPlacesMax - case noPlace when null then 0 else count(noPlace) end as nbPlacesDispoRep
     from LesRepresentations_base
-    left natural join LesTickets
+    natural left join LesTickets
     cross join placesMax
     group by noSpec, dateRep, promoRep
 ;
