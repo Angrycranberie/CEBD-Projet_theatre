@@ -201,6 +201,8 @@ class AppWindow(QMainWindow):
             self.fct_comp_3_dialog.close()
         if (self.fct_comp_4_dialog is not None):
             self.fct_comp_4_dialog.close()
+        if (self.fct_comp_5_dialog is not None):
+            self.fct_comp_5_dialog.close()
 
         if (self.fct_comp_5_dialog is not None):
             self.fct_comp_5_dialog.close()
