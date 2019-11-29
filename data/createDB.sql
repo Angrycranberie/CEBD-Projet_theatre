@@ -67,18 +67,25 @@ create table LesCategoriesTickets (
 );
 
 create view LesRepresentations as
-    select rb.noSpec, rb.dateRep, rb.promoRep, count(p.noPlace) - count(LesTickets.noPlace) as nbPlacesDispoRep
-    from LesPlaces p left join LesTickets on p.noPlace = LesTickets.noPlace and p.noRang = LesTickets.noRang join LesRepresentations_base rb
-    on rb.noSpec = LesTickets.noSpec and rb.dateRep = LesTickets.dateRep
+    with placesMax as (
+        select count(noPlace || '_' || noRang) as nbPlacesMax
+        from LesPlaces
+    )
+    select noSpec, dateRep, promoRep, nbPlacesMax - case noPlace when null then 0 else count(noPlace || '_' || noRang) end as nbPlacesDispoRep
+    from LesRepresentations_base
+    left natural join LesTickets
+    cross join placesMax
+    group by noSpec, dateRep, promoRep
 ;
 
 create view LesDossiers as
-    select noDos, sum(((Spec.prixBaseSpec)*LesZones.tauxZone)*CT.tauxReductionCat) as montant
-    from LesDossiers_base  natural join LesTickets
-        join LesCategoriesTickets CT on LesTickets.libelleCat = CT.libelleCat
-        join LesRepresentations Repr on LesTickets.dateRep = Repr.dateRep
-        join LesSpectacles Spec on LesTickets.noSpec = Spec.noSpec
-        join LesPlaces on LesTickets.noPlace = LesPlaces.noPlace and LesTickets.noRang = LesPlaces.noRang
-        join LesZones on LesPlaces.noZone = LesZones.noZone
+    select noDos, sum(((prixBaseSpec*promoRep)*tauxZone)*tauxReductionCat) as montant
+    from LesDossiers_base
+    natural join LesTickets
+    natural join LesSpectacles
+    natural join LesRepresentations
+    natural join LesPlaces
+    natural join LesZones
+    natural join LesCategoriesTickets
     group by noDos
 ;
