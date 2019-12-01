@@ -28,3 +28,5 @@ class AppFctComp7(QDialog):
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
         else:
             display.refreshGenericData(self.ui.table_fct_comp_7, result)
+
+    def ajouter(self):
