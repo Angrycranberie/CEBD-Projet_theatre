@@ -12,6 +12,7 @@ from actions.action_fct_comp_4 import AppFctComp4
 from actions.action_fct_comp_5 import AppFctComp5
 from actions.action_fct_comp_6 import AppFctComp6
 from actions.action_fct_comp_7 import AppFctComp7
+from actions.action_fct_comp_8 import AppFctComp8
 from actions.action_fct_fournie_1 import AppFctFournie1
 from actions.action_fct_fournie_2 import AppFctFournie2
 from actions.action_tablesData import AppTablesData
@@ -38,6 +39,8 @@ class AppWindow(QMainWindow):
     fct_comp_5_dialog = None
     fct_comp_6_dialog = None
     fct_comp_7_dialog = None
+    fct_comp_8_dialog = None
+
     # Constructeur
     def __init__(self):
 
@@ -182,8 +185,13 @@ class AppWindow(QMainWindow):
         if self.fct_comp_7_dialog is not None:
             self.fct_comp_7_dialog.close()
         self.fct_comp_7_dialog = AppFctComp7(self.data)
-        print("test")
         self.fct_comp_7_dialog.show()
+
+    def open_fct_comp_8(self):
+        if self.fct_comp_8_dialog is not None:
+            self.fct_comp_8_dialog.close()
+        self.fct_comp_8_dialog = AppFctComp8(self.data)
+        self.fct_comp_8_dialog.show()
 
 
     ####################################################################################################################
@@ -213,8 +221,10 @@ class AppWindow(QMainWindow):
             self.fct_comp_5_dialog.close()
         if self.fct_comp_6_dialog is not None:
             self.fct_comp_6_dialog.close()
-        if (self.fct_comp_7_dialog is not None):
+        if self.fct_comp_7_dialog is not None:
             self.fct_comp_7_dialog.close()
+        if self.fct_comp_8_dialog is not None:
+            self.fct_comp_8_dialog.close()
 
         # On ferme proprement la base de données
         self.data.close()
