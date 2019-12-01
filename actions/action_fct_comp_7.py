@@ -31,20 +31,15 @@ class AppFctComp7(QDialog):
         else:
             display.refreshGenericData(self.ui.table_fct_comp_7, result)
 
-    @pyqtSlot()
     def refreshSpecList(self):
-        print("test")
         try:
-            print("try passed")
             cursor = self.data.cursor()
-            print("cursor")
             result = cursor.execute("SELECT noSpec FROM LesSpectacles")
-            print("result")
+            print(list(result))
         except Exception as e:
             self.ui.comboBox_ajout.clear()
-            display.refreshLabel(self.ui.label_fct_comp_7, "Aucune catégorie trouvée")
+            display.refreshLabel(self.ui.label_fct_comp_7, "Aucun Spectacle trouvée")
         else:
-            print("excep")
             display.refreshGenericCombo(self.ui.comboBox_ajout, result)
 
 
