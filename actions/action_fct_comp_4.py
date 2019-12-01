@@ -1,8 +1,10 @@
 import sqlite3
-from utils import display
-from PyQt5.QtWidgets import QDialog, QTableWidgetItem
-from PyQt5.QtCore import pyqtSlot
+
 from PyQt5 import uic
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QDialog
+
+from utils import display
 
 
 # Classe permettant d'afficher la fonction à compléter 4
@@ -12,14 +14,10 @@ class AppFctComp4(QDialog):
     def __init__(self, data: sqlite3.Connection):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_4.ui", self)
-        self.ui.table_fct_comp_4.setColumnWidth(0, 50)
-        self.ui.table_fct_comp_4.setColumnWidth(1, 100)
-        self.ui.table_fct_comp_4.setColumnWidth(2, 50)
-        self.ui.table_fct_comp_4.setColumnWidth(3, 50)
-        self.ui.table_fct_comp_4.setColumnWidth(4, 120)
-        self.ui.table_fct_comp_4.setColumnWidth(5, 50)
+        self.formatTable([50, 100, 50, 50, 120, 50])
         self.data = data
         self.refreshDosList()
+        self.ui.listWidget_4_dossier.setCurrentItem(self.ui.listWidget_4_dossier.item(0))
         self.refreshCatList()
 
     # Fonction de mise à jour de l'affichage
@@ -63,3 +61,7 @@ class AppFctComp4(QDialog):
             self.ui.listWidget_4_dossier.clear()
         else:
             display.refreshGenericListWidget(self.ui.listWidget_4_dossier, result)
+
+    def formatTable(self, columnsize):
+        display.setColumnSize(self.ui.table_fct_comp_4, columnsize)
+        self.ui.table_fct_comp_4.setMinimumWidth(sum(columnsize) + 20)
