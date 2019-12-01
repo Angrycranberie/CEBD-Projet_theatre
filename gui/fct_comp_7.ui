@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>593</width>
+    <width>810</width>
     <height>577</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>620</x>
      <y>60</y>
      <width>91</width>
      <height>31</height>
@@ -91,12 +91,12 @@
     <string>Ajout d'une representation : choisir le noSpec, la date/heure et le promo</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="comboBox_ajout_fct_comp_7">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>69</width>
+     <width>291</width>
      <height>22</height>
     </rect>
    </property>
@@ -104,7 +104,7 @@
   <widget class="QDoubleSpinBox" name="doubleSpinBox">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>540</x>
      <y>60</y>
      <width>61</width>
      <height>21</height>
@@ -114,7 +114,7 @@
   <widget class="QDateTimeEdit" name="dateTimeEdit">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>330</x>
      <y>60</y>
      <width>194</width>
      <height>22</height>
@@ -124,8 +124,8 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>150</y>
+     <x>590</x>
+     <y>140</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -134,22 +134,22 @@
     <string>Supprimer</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="comboBox_suppr_fct_comp_7_2">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>380</x>
      <y>150</y>
      <width>181</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_3">
+  <widget class="QComboBox" name="comboBox_suppr_fct_comp_7">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>150</y>
-     <width>69</width>
+     <width>291</width>
      <height>22</height>
     </rect>
    </property>
@@ -169,5 +169,42 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>comboBox_suppr_fct_comp_7</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>Dialog</receiver>
+   <slot>refreshRepr_suppr_List()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>293</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>337</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>ajouter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>663</x>
+     <y>80</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>718</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>refreshRepr_suppr_List()</slot>
+  <slot>ajouter()</slot>
+ </slots>
 </ui>
