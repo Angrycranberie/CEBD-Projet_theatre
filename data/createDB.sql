@@ -89,3 +89,14 @@ create view LesDossiers as
     natural join LesCategoriesTickets
     group by noDos
 ;
+
+create view LesTickets_extension as
+    select noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat, ((prixBaseSpec*promoRep)*tauxZone)*tauxReductionCat as prixTicket
+    from LesTickets
+    natural join LesSpectacles
+    natural join LesRepresentations
+    natural join LesPlaces
+    natural join LesZones
+    natural join LesCategoriesTickets
+    group by noSpec, dateRep, noPlace, noRang
+;
