@@ -182,7 +182,6 @@ class AppWindow(QMainWindow):
         if self.fct_comp_7_dialog is not None:
             self.fct_comp_7_dialog.close()
         self.fct_comp_7_dialog = AppFctComp7(self.data)
-        print("test")
         self.fct_comp_7_dialog.show()
 
 
