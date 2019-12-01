@@ -67,10 +67,8 @@ class AppFctComp7(QDialog):
 
     def ajouter(self):
         display.refreshLabel(self.ui.label_fct_comp_7, "")
-        spec = str(self.ui.comboBox_ajout_fct_comp_7.currentText())
         try:
             cursor = self.data.cursor()
-            print(spec)
             if self.ui.comboBox_ajout_fct_comp_7.currentText() == "":
                 raise Exception("no Spec")
             result = cursor.execute("SELECT dateRep FROM LesRepresentations WHERE dateRep = ?", [str(self.ui.dateTimeEdit.date())])
@@ -83,7 +81,20 @@ class AppFctComp7(QDialog):
             noSpecReq = cursor.execute("SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?", [str(self.ui.comboBox_ajout_fct_comp_7.currentText())])
             noSpecRepr = list(noSpecReq)[0][0]
             dateRepr = self.ui.dateTimeEdit.date()
-            result = cursor.execute("INSERT INTO LesRepresentations_base (noSpec, dateRep, promoRep) VALUES(?, ?, ?)", [noSpecRepr, self.ui.dateTimeEdit.date(), self.ui.doubleSpinBox.value()])
+            result = cursor.execute("INSERT INTO LesRepresentations_base (noSpec, dateRep, promoRep) VALUES(?, ?, ?)", [int(noSpecRepr), str(self.ui.dateTimeEdit.date()), self.ui.doubleSpinBox.value()])
+            print(self.ui.dateTimeEdit.hourSection)
+            result = cursor.execute("COMMIT")
+        except Exception as e:
+            display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
+
+    def suppr(self):
+        display.refreshLabel(self.ui.label_fct_comp_7, "")
+        try:
+            cursor = self.data.cursor()
+            noSpecReq = cursor.execute("SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?",
+                                       [str(self.ui.comboBox_ajout_fct_comp_7.currentText())])
+            noSpec = list(noSpecReq)[0][0]
+            result = cursor.execute("DELETE FROM LesReprésentations_base WHERE noSpec = ? AND dateRep = ?" , [noSpec, ] )
 
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
