@@ -194,23 +194,23 @@ class AppWindow(QMainWindow):
     def closeEvent(self, event):
 
         # On ferme les éventuelles fenêtres encore ouvertes
-        if (self.tablesDataDialog is not None):
+        if self.tablesDataDialog is not None:
             self.tablesDataDialog.close()
-        if (self.fct_fournie_1_dialog is not None):
+        if self.fct_fournie_1_dialog is not None:
             self.fct_fournie_1_dialog.close()
-        if (self.fct_fournie_2_dialog is not None):
+        if self.fct_fournie_2_dialog is not None:
             self.fct_fournie_2_dialog.close()
-        if (self.fct_comp_1_dialog is not None):
+        if self.fct_comp_1_dialog is not None:
             self.fct_comp_1_dialog.close()
-        if (self.fct_comp_2_dialog is not None):
+        if self.fct_comp_2_dialog is not None:
             self.fct_comp_2_dialog.close()
-        if (self.fct_comp_3_dialog is not None):
+        if self.fct_comp_3_dialog is not None:
             self.fct_comp_3_dialog.close()
-        if (self.fct_comp_4_dialog is not None):
+        if self.fct_comp_4_dialog is not None:
             self.fct_comp_4_dialog.close()
-        if (self.fct_comp_5_dialog is not None):
+        if self.fct_comp_5_dialog is not None:
             self.fct_comp_5_dialog.close()
-        if (self.fct_comp_6_dialog is not None):
+        if self.fct_comp_6_dialog is not None:
             self.fct_comp_6_dialog.close()
         if (self.fct_comp_7_dialog is not None):
             self.fct_comp_7_dialog.close()
