@@ -31,7 +31,7 @@
     <rect>
      <x>10</x>
      <y>530</y>
-     <width>581</width>
+     <width>781</width>
      <height>20</height>
     </rect>
    </property>
@@ -124,8 +124,8 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>140</y>
+     <x>520</x>
+     <y>150</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -137,7 +137,7 @@
   <widget class="QComboBox" name="comboBox_suppr_fct_comp_7_2">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>330</x>
      <y>150</y>
      <width>181</width>
      <height>22</height>
@@ -202,9 +202,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>suppr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>571</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>672</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>refreshRepr_suppr_List()</slot>
   <slot>ajouter()</slot>
+  <slot>suppr()</slot>
  </slots>
 </ui>

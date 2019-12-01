@@ -3,6 +3,8 @@ from utils import display
 from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
+import time
+from datetime import datetime
 from utils.display import refreshGenericCombo
 
 
@@ -80,9 +82,10 @@ class AppFctComp7(QDialog):
 
             noSpecReq = cursor.execute("SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?", [str(self.ui.comboBox_ajout_fct_comp_7.currentText())])
             noSpecRepr = list(noSpecReq)[0][0]
-            dateRepr = self.ui.dateTimeEdit.date()
-            result = cursor.execute("INSERT INTO LesRepresentations_base (noSpec, dateRep, promoRep) VALUES(?, ?, ?)", [int(noSpecRepr), str(self.ui.dateTimeEdit.date()), self.ui.doubleSpinBox.value()])
-            print(self.ui.dateTimeEdit.hourSection)
+            dateRepr = self.ui.dateTimeEdit.dateTime().toPyDateTime()
+            dateRepr = dateRepr.strftime("%d/%m/%Y %H:%M")
+            result = cursor.execute("INSERT INTO LesRepresentations_base (noSpec, dateRep, promoRep) VALUES(?, ?, ?)", [int(noSpecRepr), dateRepr, self.ui.doubleSpinBox.value()])
+            # print(dateRepr)
             result = cursor.execute("COMMIT")
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
@@ -94,7 +97,9 @@ class AppFctComp7(QDialog):
             noSpecReq = cursor.execute("SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?",
                                        [str(self.ui.comboBox_ajout_fct_comp_7.currentText())])
             noSpec = list(noSpecReq)[0][0]
-            result = cursor.execute("DELETE FROM LesReprésentations_base WHERE noSpec = ? AND dateRep = ?" , [noSpec, ] )
+            dateRepr = self.ui.comboBox_suppr_fct_comp_7_2.currentText()
+            # dateRepr = dateRepr.strftime("%d/%m/%Y %H:%M")
+            result = cursor.execute("DELETE FROM LesRepresentations_base WHERE noSpec = ? AND dateRep = ?", [noSpec,dateRepr ])
 
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
