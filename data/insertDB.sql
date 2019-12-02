@@ -33,6 +33,7 @@ insert into LesDossiers_base(noDos) values (1);
 insert into LesDossiers_base(noDos) values (2);
 insert into LesDossiers_base(noDos) values (3);
 insert into LesDossiers_base(noDos) values (4);
+insert into LesDossiers_base(noDos) values (5);
 
 insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (1, '24/12/2019 17:00', 1);
 insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (1, '25/12/2019 20:00', 0.75);
@@ -41,24 +42,27 @@ insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (2, '24/12
 insert into LesRepresentations_base(noSpec, dateRep, promoRep) values (2, '25/12/2019 23:00', 0.5);
 
 
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 1, 1, '23/12/2019 21:30:20',1, 'etudiant');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 2, 1, '23/12/2019 21:30:20',1, 'etudiant');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 3, 1, '23/12/2019 21:30:20',1, 'normal');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 4, 1, '23/12/2019 21:30:20',1, 'normal');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 5, 1, '23/12/2019 21:30:20',1, 'senior');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 1, 1, '23/12/2019 21:30:20', 1, 'etudiant');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 2, 1, '23/12/2019 21:30:20', 1, 'etudiant');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 3, 1, '23/12/2019 21:30:20', 1, 'normal');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 4, 1, '23/12/2019 21:30:20', 1, 'normal');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 5, 1, '23/12/2019 21:30:20', 1, 'senior');
 
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 1, 2, '20/12/2019 22:31:00',2, 'normal');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 2, 2, '20/12/2019 22:31:00',2, 'senior');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 1, 2, '20/12/2019 22:31:00', 2, 'normal');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 2, 2, '20/12/2019 22:31:00', 2, 'senior');
 
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 1, 3, '20/12/2019 14:22:00',3, 'etudiant');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 2, 3, '20/12/2019 14:22:00',3, 'normal');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 1, 3, '20/12/2019 14:22:00', 3, 'etudiant');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 2, 3, '20/12/2019 14:22:00', 3, 'normal');
 
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 3, '20/12/2019 14:22:35',4, 'adherent');
-insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 4, '20/12/2019 14:22:48',4, 'militaire');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 3, '20/12/2019 14:22:35', 4, 'adherent');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (2, '25/12/2019 23:00', 5, 4, '20/12/2019 14:22:48', 4, 'militaire');
+
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 5, 2, '13/12/2019 14:22:48', 5, 'etudiant');
+insert into LesTickets(noSpec, dateRep, noPlace, noRang, dateEmTick, noDos, libelleCat) values (1, '24/12/2019 17:00', 4, 3, '13/12/2019 14:22:48', 5, 'adherant');
 
 
-insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('etudiant', 0.66);
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('etudiant', 0.75);
 insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('normal', 1);
-insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('senior', 0.75);
+insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('senior', 0.66);
 insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('militaire', 0.4);
 insert into  LesCategoriesTickets (libelleCat, tauxReductionCat) values ('adherent', 0.5);

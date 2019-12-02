@@ -14,11 +14,17 @@ class AppFctComp7(QDialog):
     def __init__(self, data: sqlite3.Connection):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_7.ui", self)
+        self.formatTable([200, 120, 70, 50])
         self.data = data
         self.refreshResult()
         self.refreshSpecList()
         self.refreshSpec_suppr_List()
         self.refreshRepr_suppr_List()
+
+    # Fonction de mise en forme de la table
+    def formatTable(self, columnsize):
+        display.setColumnSize(self.ui.table_fct_comp_7, columnsize)
+        self.ui.table_fct_comp_7.setMinimumSize(sum(columnsize) + 20, 400)
 
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
@@ -27,7 +33,11 @@ class AppFctComp7(QDialog):
         display.refreshLabel(self.ui.label_fct_comp_7, "")
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT noSpec, dateRep, promoRep, nbPlacesDispoRep FROM LesRepresentations")
+            result = cursor.execute(
+                "SELECT nomSpec, dateRep, promoRep, nbPlacesDispoRep "
+                "FROM LesRepresentations "
+                "NATURAL JOIN LesSpectacles"
+            )
         except Exception as e:
             self.ui.table_fct_comp_7.setRowCount(0)
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
