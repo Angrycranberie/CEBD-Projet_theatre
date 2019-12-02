@@ -110,7 +110,7 @@ class AppFctComp7(QDialog):
 
             # mise à jour persistante de la base de donnée
             result = cursor.execute("COMMIT")
-
+            self.refreshResult()
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
 
@@ -134,8 +134,10 @@ class AppFctComp7(QDialog):
             # suppression des tickets de cette représentaions
             result = cursor.execute("DELETE FROM LesTickets WHERE noSpec = ? AND dateRep = ?", [noSpec, dateRepr])
 
+            result = cursor.execute("DELETE FROM LesDossiers_base WHERE noDos not in (SELECT noDos from LesTickets)")
+
             # mise à jour persistante de la base de donnée
             result = cursor.execute("COMMIT")
-
+            self.refreshResult()
         except Exception as e:
             display.refreshLabel(self.ui.label_fct_comp_7, "Impossible d'afficher les résultats : " + repr(e))
