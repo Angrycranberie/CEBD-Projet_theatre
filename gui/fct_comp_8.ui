@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>642</width>
-    <height>614</height>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Gérer les réservations</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QGroupBox" name="groupBox_ajout_fct_comp_8">
      <property name="title">
@@ -192,43 +192,73 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_tri_fct_comp_8">
-     <property name="title">
-      <string>Options de tri</string>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QRadioButton" name="radioButton_tri_dos_fct_comp_8">
-        <property name="text">
-         <string>Par numéro de dossier</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton_tri_spec_fct_comp_8">
-        <property name="text">
-         <string>Par représentation</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
+    <layout class="QHBoxLayout" name="layout_tri_action">
+     <item>
+      <widget class="QGroupBox" name="groupBox_tri_fct_comp_8">
+       <property name="title">
+        <string>Options de tri</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QRadioButton" name="radioButton_tri_dos_fct_comp_8">
+          <property name="text">
+           <string>Par numéro de dossier</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_tri_spec_fct_comp_8">
+          <property name="text">
+           <string>Par représentation</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>Actions</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="pushButton_update_fct_comp_8">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Modifier</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_delete_fct_comp_8">
+          <property name="text">
+           <string>Supprimer</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QTableWidget" name="table_fct_comp_8">
@@ -276,6 +306,11 @@
      </column>
      <column>
       <property name="text">
+       <string>dateEmTick</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
        <string>prixTicket</string>
       </property>
      </column>
@@ -294,6 +329,64 @@
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_delete_fct_comp_8">
+     <property name="title">
+      <string>Confirmation de la suppression</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_delmsg_fct_comp_8">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Êtes-vous sûr de vouloir supprimer la réservation suivante ?</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_delrow_fct_comp_8">
+        <property name="text">
+         <string>---</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="layout_delete_conf">
+        <item>
+         <widget class="QPushButton" name="pushButton_ndel_fct_comp_8">
+          <property name="text">
+           <string>Annuler</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_ydel_fct_comp_8">
+          <property name="text">
+           <string>Confirmer</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -323,8 +416,8 @@
    <slot>refreshResult()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>423</x>
-     <y>155</y>
+     <x>268</x>
+     <y>168</y>
     </hint>
     <hint type="destinationlabel">
      <x>452</x>
@@ -412,6 +505,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_delete_fct_comp_8</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_comp_8</receiver>
+   <slot>deleteReservation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>601</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>633</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_ndel_fct_comp_8</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_comp_8</receiver>
+   <slot>deleteNo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>698</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>290</x>
+     <y>719</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_ydel_fct_comp_8</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_comp_8</receiver>
+   <slot>deleteYes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>494</x>
+     <y>696</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>720</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>refreshResult()</slot>
@@ -421,5 +562,8 @@
   <slot>addReservation()</slot>
   <slot>refreshCurrentFolder()</slot>
   <slot>addFolder()</slot>
+  <slot>deleteReservation()</slot>
+  <slot>deleteYes()</slot>
+  <slot>deleteNo()</slot>
  </slots>
 </ui>

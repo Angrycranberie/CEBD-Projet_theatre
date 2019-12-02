@@ -13,7 +13,8 @@ class AppFctComp8(QDialog):
     def __init__(self, data: sqlite3.Connection):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_8.ui", self)
-        self.formatTable([50, 250, 100, 50, 50, 100, 60])
+        self.formatTable([50, 250, 100, 50, 50, 100, 120, 60])
+        self.ui.groupBox_delete_fct_comp_8.setHidden(True)
         self.data = data
         # Tableau des éléments pour l'ajout
         self.addelements = [
@@ -38,7 +39,7 @@ class AppFctComp8(QDialog):
         try:
             cursor = self.data.cursor()
             result = cursor.execute(
-                "SELECT noDos, nomSpec, dateRep, noPlace, noRang, libelleCat, prixTicket "
+                "SELECT noDos, nomSpec, dateRep, noPlace, noRang, libelleCat, dateEmTick, prixTicket "
                 "FROM LesTickets_extension "
                 "NATURAL JOIN LesSpectacles "
                 "ORDER BY " + sort[1 if self.ui.radioButton_tri_dos_fct_comp_8.isChecked() else 0]
@@ -61,7 +62,7 @@ class AppFctComp8(QDialog):
             dosMax = list(cursor.execute("SELECT max(noDos) FROM LesDossiers_base"))[0][0]
             dosMaxCount = list(cursor.execute("SELECT count(noDos) FROM LesTickets WHERE noDos = ?", [dosMax]))[0][0]
         except Exception as e:
-            display.refreshLabel(self.ui.label_dos_fct_comp_8, "Dossier courant erroné")
+            display.refreshLabel(self.ui.label_dos_fct_comp_8, "Dossier courant erroné.")
             self.ui.pushButton_newdos_fct_comp_8.setEnabled(False)
         else:
             display.refreshLabel(self.ui.label_dos_fct_comp_8, "Dossier courant : n°" + str(dosMax))
@@ -79,7 +80,7 @@ class AppFctComp8(QDialog):
                 "VALUES ((SELECT max(noDos)+1 FROM LesDossiers_base))"
             )
         except Exception as e:
-            display.refreshLabel(self.ui.label_error_fct_comp_8, "Erreur dans la création du dossier : " + repr(e))
+            display.refreshLabel(self.ui.label_error_fct_comp_8, "Erreur lors de la création du dossier : " + repr(e))
         else:
             display.refreshLabel(self.ui.label_error_fct_comp_8, "Nouveau dossier créé avec succès.")
             self.refreshCurrentFolder()
@@ -201,3 +202,66 @@ class AppFctComp8(QDialog):
             display.refreshLabel(self.ui.label_error_fct_comp_8, "Réservation insérée avec succès.")
             self.refreshSpecList()
             self.refreshCurrentFolder()
+
+    # Fonction démarrant la suppression d'un réservation
+    def deleteReservation(self):
+        display.refreshLabel(self.ui.label_error_fct_comp_8, "")
+        cr = self.ui.table_fct_comp_8.currentRow()
+        if cr != -1:
+            self.ui.groupBox_delete_fct_comp_8.setHidden(False)
+            self.ui.pushButton_delete_fct_comp_8.setEnabled(False)
+            self.ui.table_fct_comp_8.selectRow(cr)
+            nodos = self.ui.table_fct_comp_8.item(cr, 0).text()
+            ticketid = [self.ui.table_fct_comp_8.item(cr, i).text() for i in range(1, 5)]
+            libcat = self.ui.table_fct_comp_8.item(cr, 5).text()
+            display.refreshLabel(
+                self.ui.label_delrow_fct_comp_8,
+                "[Dossier n°" + nodos + "] Ticket " + libcat + " pour " + ticketid[0] + " le "
+                + ticketid[1] + " (rang " + ticketid[3] + ", place " + ticketid[2] + ") "
+            )
+        else:
+            display.refreshLabel(self.ui.label_error_fct_comp_8,
+                                 "Sélectionnez une réservation dans le tableau pour la supprimer.")
+
+    # Confirmation de la suppression d'une réservation
+    def deleteYes(self):
+        self.ui.groupBox_delete_fct_comp_8.setHidden(True)
+        display.refreshLabel(self.ui.label_delrow_fct_comp_8, "")
+        cr = self.ui.table_fct_comp_8.currentRow()
+        nodos = self.ui.table_fct_comp_8.item(cr, 0).text()
+        ticketid = [self.ui.table_fct_comp_8.item(cr, i).text() for i in range(1, 5)]
+        cursor = self.data.cursor()
+        try:
+            cursor.execute(
+                "DELETE FROM LesTickets "
+                "WHERE noSpec = (SELECT noSpec FROM LesSpectacles WHERE nomSpec = ?) "
+                "AND dateRep = ? AND noPlace = ? AND noRang = ?",
+                ticketid
+            )
+        except Exception as e:
+            display.refreshLabel(self.ui.label_error_fct_comp_8, "Impossible de supprimer la réservation : " + repr(e))
+        else:
+            try:
+                ctfolder = cursor.execute("SELECT count(noDos) FROM LesTickets WHERE noDos = ?", [nodos])
+            except Exception as e:
+                display.refreshLabel(self.ui.label_error_fct_comp_8, "Parcours des dossiers erroné : " + repr(e))
+            else:
+                if list(ctfolder)[0][0] == 0:
+                    try:
+                        cursor.execute("DELETE FROM LesDossiers_base WHERE noDos = ?", [nodos])
+                    except Exception as e:
+                        display.refreshLabel(self.ui.label_error_fct_comp_8,
+                                             "Impossible de supprimer le dossier : " + repr(e))
+                    self.refreshCurrentFolder()
+                self.refreshSpecList()
+                self.refreshResult()
+                display.refreshLabel(self.ui.label_error_fct_comp_8, "Suppression effectuée avec succès.")
+
+        self.ui.table_fct_comp_8.selectRow(-1)
+        self.ui.pushButton_delete_fct_comp_8.setEnabled(True)
+
+    # Annulation de la suppression d'une réservation
+    def deleteNo(self):
+        self.ui.table_fct_comp_8.selectRow(-1)
+        self.ui.groupBox_delete_fct_comp_8.setHidden(True)
+        self.ui.pushButton_delete_fct_comp_8.setEnabled(True)
