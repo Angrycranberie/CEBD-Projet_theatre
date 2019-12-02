@@ -26,8 +26,6 @@ class AppWindow(QMainWindow):
     # Création d'un signal destiné à être émis lorsque la table est modifiée
     changedValue = pyqtSignal()
 
-    # TODO 3 : ajouter les fenetres (rep. gui) et les actions (rep. actions) correspondant aux 2 items de la partie 3.
-
     # On prévoit des variables pour accueillir les fenêtres supplémentaires
     tablesDataDialog = None
     fct_fournie_1_dialog = None
@@ -113,7 +111,6 @@ class AppWindow(QMainWindow):
     ####################################################################################################################
     # Ouverture des autres fenêtres de l'application
     ####################################################################################################################
-    # TODO 3 : ajouter la définition des méthodes déclenchées lors des clicks sur les boutons de la partie 3
 
     # En cas de clic sur le bouton de visualisation des données
     def openData(self):
