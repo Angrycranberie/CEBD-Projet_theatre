@@ -1,6 +1,10 @@
 
-data/theatre.db
+data/theatre.db*
 
 *.pyc
 
-.idea
+.idea/*.xml
+
+.idea/*.iml
+
+actions/__pycache__/
